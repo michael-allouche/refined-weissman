@@ -1,63 +1,13 @@
-import numpy as np
 import pandas as pd
-import scipy.stats
 from rpy2 import robjects as ro
 import rpy2.robjects.numpy2ri
-# from rpy2.robjects.packages import importr
-import rpy2.robjects.packages as rpackages
 
 from extreme.data_management import DataSampler
 import numpy as np
 from pathlib import Path
-import matplotlib.pyplot as plt
 
 
 list_estimators = ["W", "RW", "CW", "CH", "CHp", "CHps", "PRBp", "PRBps"]
-# list_estimators = ["W", "RW", "CW", "CH", "CHps", "PRBps"]
-# list_estimators = ["W", "RW", "CW", "CH"]
-
-# def hill(X_orders, k_anchor):
-#     """
-#     compute hill estimator
-#     Parameters
-#     ----------
-#     X_orders : order statistics
-#         arr
-#     k_anchor : anchor point
-#         int >=1 and < nb of data
-#
-#     Returns
-#     -------
-#
-#     """
-#     n_data = X_orders.shape[0]
-#     X_i_n = X_orders[-k_anchor:]
-#     X_k_n = X_orders[n_data-(k_anchor+1)]
-#     return np.mean(np.log(X_i_n)) - np.log(X_k_n)
-
-# ==================================================
-#                  Tail index estimator
-# ==================================================
-
-# def hill(X, k_anchor, axis=0):
-#     """
-#
-#     Parameters
-#     ----------
-#     X : ndarray
-#         arr
-#     k : threshold
-#         int =>1
-#
-#     Returns
-#     -------
-#
-#     """
-#     X_in = X[-k_anchor:]
-#     X_kn = X[-(k_anchor+1)] * np.ones_like(X_in)
-#
-#     return np.mean(np.log(X_in) - np.log(X_kn))
-
 
 class TailIndexEstimator():
     def __init__(self, X_order):
@@ -128,34 +78,6 @@ class TailIndexEstimator():
         term1 = self.n_data - 1
         term2 = np.power(np.square(1 - self.rho) * np.power(self.n_data, -2*self.rho) / (-2*self.rho*np.square(self.beta)), 1/(1-2*self.rho))
         return int(np.minimum(term1, np.floor(term2) + 1))
-
-
-
-# ==================================================
-#                  Extreme quantile estimators
-# ==================================================
-
-
-# def weissman(X_order, alpha, k_anchor):
-#     """
-#     Parameters
-#     ----------
-#     X_orders : order statistics
-#     alpha : extreme order
-#     k_anchor : anchor point
-#
-#     Returns
-#     -------
-#
-#     Maths
-#     ----
-#     X_{n-k, n}(k/np)^gamma_hill(k) with 0<p<1 and k\in{1,...,n-1}
-#
-#     """
-#     gamma_hill = hill(X_order, k_anchor)
-#     n_data = X_order.shape[0]
-#     X_anchor = X_order[-k_anchor]
-#     return X_anchor * np.power(k_anchor/(alpha * n_data), gamma_hill)
 
 
 class ExtremeQuantileEstimator(TailIndexEstimator):
