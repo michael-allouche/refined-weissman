@@ -1,4 +1,3 @@
-#install.packages("evt0")  # installing the package
 library(evt0)
 
 # Compute rho and beta from evt0 package
