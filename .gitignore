@@ -17,6 +17,7 @@ data/
 backup/
 VM/
 Notes/
+imgs/
 
 # Extension #
 *.csv
