@@ -58,7 +58,8 @@ statsviz.evt_quantile_plot(n_replications=1000,
                            n_data=500, 
                            n_quantile="2n")
 ```
-![simulation](imgs/simulations-burr-{'evi': 0.125, 'rho': -0.125}-1000-500-2n-.pdf)
+![simulations](imgs/simulations_test.jpg)
+
 
 ### Real data
 

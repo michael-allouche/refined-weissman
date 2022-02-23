@@ -81,7 +81,8 @@ def evt_quantile_plot(n_replications, n_data, distribution, params, n_quantile, 
         pathdir = Path("imgs")
         pathdir.mkdir(parents=True, exist_ok=True)
         filename = "simulations-{}-{}-{}-{}-{}-".format(distribution, params, n_replications, n_data,  n_quantile)
-        plt.savefig(pathdir / "{}.eps".format(filename), format="eps")
+        # plt.savefig(pathdir / "{}.eps".format(filename), format="eps")
+        plt.savefig(pathdir / "{}.jpg".format(filename))
     return
 
 
