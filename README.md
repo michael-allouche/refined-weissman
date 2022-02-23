@@ -1,5 +1,6 @@
 # refined-weissman
-Implementation of the paper ["A refined Weissman estimator of extreme quantile"](https://hal.inria.fr/hal-03266676v2/document)
+Implementation of the paper ["A refined Weissman estimator of extreme quantile"](https://hal.inria.fr/hal-03266676v2/document),
+by [Jonathan El Methni](https://scholar.google.fr/citations?user=JjjH8N8AAAAJ&hl=fr), [Stéphane Girard](http://mistis.inrialpes.fr/people/girard/)
 
 The repo contains the codes for comparing the 8 extreme quantile estimators on both simulated and real-data.
 
@@ -42,11 +43,11 @@ from extreme.estimators import evt_estimators
 evt_estimators(n_replications=1000, params={"evi":0.125, "rho": -1.},
                 distribution="burr", 
                n_data=500, n_quantile="2n")
+```
+```
+Estimators     W	RW	CW	CH	CHp	PRBp	CHps	PRBps
 
-
-    Estimators     W	RW	CW	CH	CHp	PRBp	CHps	PRBps
-
-    RMSE	      0.0471	0.0095	0.0063	0.0155	0.0149	0.015	0.0135	0.0164
+RMSE	      0.0471	0.0095	0.0063	0.0155	0.0149	0.015	0.0135	0.0164
 ```
 You can also plot the bias, the variance and the RMSE
 
