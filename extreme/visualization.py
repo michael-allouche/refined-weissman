@@ -8,7 +8,7 @@ import seaborn as sns
 import os
 
 
-def evt_quantile_plot(n_replications, n_data, distribution, params, n_quantile):
+def evt_quantile_plot(n_replications, n_data, distribution, params, n_quantile, saved=False):
     """extreme quantile plot of just the evt estimatorsat level 1/2n for different replications with variance and MSE"""
 
     pathdir = Path("ckpt", n_quantile, distribution, "extrapolation", str(params))
@@ -76,6 +76,12 @@ def evt_quantile_plot(n_replications, n_data, distribution, params, n_quantile):
     fig.tight_layout()
     fig.suptitle("Estimator plot \n{}: {}".format(distribution.upper(), str(params).upper()), fontweight="bold", y=1.04)
     sns.despine()
+
+    if saved:
+        pathdir = Path("imgs")
+        pathdir.mkdir(parents=True, exist_ok=True)
+        filename = "simulations-{}-{}-{}-{}-{}-".format(distribution, params, n_replications, n_data,  n_quantile)
+        plt.savefig(pathdir / "{}.eps".format(filename), format="eps")
     return
 
 

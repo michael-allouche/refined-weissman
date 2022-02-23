@@ -31,37 +31,41 @@ In `run_evt_estimators.py`, one can update the `dict_runner` with the desired pa
 Next, run `run_evt_estimators.py` to compute all the quantile estimators at both quantile levels $`\alpha=1/(n)`$ and $`\alpha=1/(2n)`$ . 
 For example, estimations applied to 1000 replications of 500 samples issued from a Burr distribution:
 
-`python run_evt_estimators.py -d burr -r 1000 -d 500`
+`python run_evt_estimators.py -d burr -r 1000 -n 500`
 
 Once the run is finished, all the RMSE for each estimator are saved in the folder `./ckpt`.
 
 In the notebook, you can display a table result. For example
 
-`evt_estimators(n_replications=1000, params={"evi":0.125, "rho": -1.},
+```
+from extreme.estimators import evt_estimators 
+evt_estimators(n_replications=1000, params={"evi":0.125, "rho": -1.},
                 distribution="burr", 
-               n_data=500, n_quantile="2n")`
+               n_data=500, n_quantile="2n")
+
 
     Estimators     W	RW	CW	CH	CHp	PRBp	CHps	PRBps
 
     RMSE	      0.0471	0.0095	0.0063	0.0155	0.0149	0.015	0.0135	0.0164
+```
+You can also plot the bias, the variance and the RMSE
 
-You can also plot the bias
+```
+from extreme import visualization as statsviz
+statsviz.evt_quantile_plot(n_replications=1000, 
+   		           params={"evi":0.125, "rho": -0.125}, 
+                           distribution="burr", 
+                           n_data=500, 
+                           n_quantile="2n")
+```
+![simulation](imgs/simulations-burr-{'evi': 0.125, 'rho': -0.125}-1000-500-2n-.pdf)
 
-INSERT
-
-the variance
-
-INSERT
-
-and the RMSE
-
-INSERT
 ### Real data
 
 ## Citing
-`@unpublished{girard2021revisiting,
-	TITLE = {{A refined Weissman estimator for extreme quantiles}},
-	AUTHOR = {El Methni, J. and Girard, S.},
-	URL = {{\tt https://hal.inria.fr/hal-03266676}},
+@unpublished{girard2021revisiting,\
+	TITLE = {{A refined Weissman estimator for extreme quantiles}},\
+	AUTHOR = {El Methni, J. and Girard, S.},\
+	URL = {{\tt https://hal.inria.fr/hal-03266676}}, \
 	YEAR = {2021}
-}`
+}

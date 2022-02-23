@@ -1,5 +1,6 @@
 from extreme.estimators import evt_estimators
 from itertools import product
+import argparse
 
 dict_runner = {"burr": {"evi": [0.125, 0.25, 0.5, 1.], "rho": [-0.125, -0.25, -0.5, -1.]},
                "nhw": {"evi": [0.125, 0.25, 0.5, 1.], "rho": [-0.125, -0.25, -0.5, -1.]},
@@ -9,15 +10,33 @@ dict_runner = {"burr": {"evi": [0.125, 0.25, 0.5, 1.], "rho": [-0.125, -0.25, -0
                "invgamma": {"evi": [0.125, 0.25, 0.5, 1.]},
                "student": {"evi": [0.125, 0.25, 0.5, 1.]}
                }
-# TODO : ajouter un parser avec distribution, n_replications, n_data
+
+
+parser = argparse.ArgumentParser(description='Runner for simulations')
+parser.add_argument('--distribution', '-d', type=str,
+                    help="name of the dstribution: {burr, nhw, frechet, fisher, gpd, invgamma, student} ",
+                    default="burr")
+parser.add_argument('--replications', '-r', type=int,
+                    help="Number of replications",
+                    default=1000)
+parser.add_argument('--ndata', '-n', type=int,
+                    help="Number of observations ",
+                    default=500)
+
+
+
 if __name__ == "__main__":
-    DISTRIBUTION = "burr"
-    keys, values = zip(*dict_runner[DISTRIBUTION].items())
+    args = parser.parse_args()
+    distribution = args.distribution
+    n_replications = args.replications
+    n_data = args.ndata
+
+    keys, values = zip(*dict_runner[distribution].items())
     permutations_dicts = [dict(zip(keys, v)) for v in product(*values)]
     for parameters in permutations_dicts:
-        print("{}: ".format(DISTRIBUTION),parameters)
-        df_evt = evt_estimators(n_replications=1000, params=parameters,
-                                distribution=DISTRIBUTION, n_data=500)
+        print("{}: ".format(distribution),parameters)
+        df_evt = evt_estimators(n_replications=n_replications, params=parameters,
+                                distribution=distribution, n_data=n_data)
 
 
 
