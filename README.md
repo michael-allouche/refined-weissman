@@ -64,11 +64,13 @@ statsviz.evt_quantile_plot(n_replications=1000,
 
 ### Real data
 We consider here the Secura Belgian reinsurance data set in `./dataset/besecura.txt` on automobile claims from 1998 until 2001.
-This data set consists of $n = 371$ claims which were at least as large as 1.2 million Euros and were corrected for inflation. 
-Our goal is to estimate the extreme quantile $q(1/n)$ (with $1/n\simeq 0.0027$) and to compare it to the maximum of the sample $x_{n,n}=7.898$ million Euros.
+This data set consists of <img src="https://render.githubusercontent.com/render/math?math=n = 371"> claims which were at least as large as 1.2 million Euros and were corrected for inflation. 
+Our goal is to estimate the extreme quantile <img src="https://render.githubusercontent.com/render/math?math=q(1/n)"> 
+with <img src="https://render.githubusercontent.com/render/math?math=1/n\simeq 0.0027">) and to compare it to the maximum 
+of the sample <img src="https://render.githubusercontent.com/render/math?math=x_{n,n}=7.898">million Euros.
 
 
-<img src="https://render.githubusercontent.com/render/math?math=e^{i \pi} = -1">
+
 
 ## Citing
 @unpublished{girard2021refined,\
