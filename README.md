@@ -14,10 +14,10 @@ Our approach is compared to other bias reduced estimators of extreme quantiles b
 
 ## Dependencies
 Install the requirements for each software version used
-- Python 3.8
+- Python >3.8
 
 `pip install -r requirements.txt`
-- R 3.
+- R 4.1.2
 
 `install.packages("evt0")`
 
@@ -29,12 +29,12 @@ Seven heavy-tailed distributions are implemented in `./extreme/distribution.py`:
 **Burr, NHW, Fréchet, Fisher, GPD, Inverse Gamma, Student**.
 
 In `run_evt_estimators.py`, one can update the `dict_runner` with the desired parametrization. 
-Next, run `run_evt_estimators.py` to compute all the quantile estimators at both quantile levels $`\alpha=1/(n)`$ and $`\alpha=1/(2n)`$ . 
+Next, run `run_evt_estimators.py` to compute all the quantile estimators at both quantile levels alpha=1/n and alpha=1/(2n) . 
 For example, estimations applied to 1000 replications of 500 samples issued from a Burr distribution:
 
 `python run_evt_estimators.py -d burr -r 1000 -n 500`
 
-Once the run is finished, all the RMSE for each estimator are saved in the folder `./ckpt`.
+Once the run is finished, all the metrics for each estimator are saved in the folder `./ckpt`.
 
 In the notebook, you can display a table result. For example
 
@@ -63,9 +63,15 @@ statsviz.evt_quantile_plot(n_replications=1000,
 
 
 ### Real data
+We consider here the Secura Belgian reinsurance data set in `./dataset/besecura.txt` on automobile claims from 1998 until 2001.
+This data set consists of $n = 371$ claims which were at least as large as 1.2 million Euros and were corrected for inflation. 
+Our goal is to estimate the extreme quantile $q(1/n)$ (with $1/n\simeq 0.0027$) and to compare it to the maximum of the sample $x_{n,n}=7.898$ million Euros.
+
+
+<img src="https://render.githubusercontent.com/render/math?math=e^{i \pi} = -1">
 
 ## Citing
-@unpublished{girard2021revisiting,\
+@unpublished{girard2021refined,\
 	TITLE = {{A refined Weissman estimator for extreme quantiles}},\
 	AUTHOR = {El Methni, J. and Girard, S.},\
 	URL = {{\tt https://hal.inria.fr/hal-03266676}}, \
