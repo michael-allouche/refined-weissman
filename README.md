@@ -87,13 +87,14 @@ We consider here the Secura Belgian reinsurance data set in `./dataset/besecura.
 This data set consists of <img src="https://render.githubusercontent.com/render/math?math=n = 371"> claims which were at least as large as 1.2 million Euros and were corrected for inflation. 
 Our goal is to estimate the extreme quantile <img src="https://render.githubusercontent.com/render/math?math=q(1/n)">
 (with <img src="https://render.githubusercontent.com/render/math?math=1/n\simeq 0.0027">) and to compare it to the maximum 
-of the sample <img src="https://render.githubusercontent.com/render/math?math=x_{n,n}=7.898">million Euros.
+of the sample <img src="https://render.githubusercontent.com/render/math?math=x_{n,n}=7.898">million Euros. 
+Below the histogram of the losses:
 
 ![histogram](imgs/histogram_real.jpg)
 
 Display the quantile plot and the selected intemediate sequence <img src="https://render.githubusercontent.com/render/math?math=k">
 using our proposed Algorithm in the paper.
-`statsviz.real_quantile_plot(saved=True)`
+`statsviz.real_quantile_plot()`
 ![histogram](imgs/quantile_plot_real_test.jpg)
 
 
