@@ -88,8 +88,13 @@ This data set consists of <img src="https://render.githubusercontent.com/render/
 Our goal is to estimate the extreme quantile <img src="https://render.githubusercontent.com/render/math?math=q(1/n)">
 (with <img src="https://render.githubusercontent.com/render/math?math=1/n\simeq 0.0027">) and to compare it to the maximum 
 of the sample <img src="https://render.githubusercontent.com/render/math?math=x_{n,n}=7.898">million Euros.
-![histogram](imgs/hist_real.jpg)
 
+![histogram](imgs/histogram_real.jpg)
+
+Display the quantile plot and the selected intemediate sequence <img src="https://render.githubusercontent.com/render/math?math=k">
+using our proposed Algorithm in the paper.
+`statsviz.real_quantile_plot(saved=True)`
+![histogram](imgs/quantile_plot_real_test.jpg)
 
 
 ## Citing

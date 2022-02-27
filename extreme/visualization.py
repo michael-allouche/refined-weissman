@@ -227,7 +227,7 @@ def real_quantile_plot(saved=False):
     axes[0, 0].hlines(y=real_quantile, xmin=0., xmax=n_data, color="black", linestyle="--")
     # label="reference line (q={:.2f})".format(float(real_quantile))
 
-    # axes[0, 0].legend()
+    axes[0, 0].legend()
     axes[0, 0].spines["left"].set_color("black")
     axes[0, 0].spines["bottom"].set_color("black")
 
@@ -243,7 +243,8 @@ def real_quantile_plot(saved=False):
     if saved:
         pathdir = Path("imgs")
         pathdir.mkdir(parents=True, exist_ok=True)
-        plt.savefig(pathdir / "quantile_plot_real.eps", format="eps")
+        # plt.savefig(pathdir / "quantile_plot_real.eps", format="eps")
+        plt.savefig(pathdir / "quantile_plot_real.jpg")
     return
 
 def real_quantile_plot_paper(saved=False):
@@ -374,7 +375,7 @@ def real_hist_plot(saved=False):
     h.set(xticks=[1e6, 2e6, 3e6, 4e6, 5e6, 6e6, 7e6, 8e6])
     h.set_xticklabels(np.arange(1, 9, 1))
 
-    plt.title('Histogram of the losses', fontsize=20)
+
 
     sns.despine()
     if saved:
