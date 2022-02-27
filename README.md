@@ -1,8 +1,9 @@
-# refined-weissman
+# A refined Weissman estimator of extreme quantile, 2022
 Implementation of the paper ["A refined Weissman estimator of extreme quantile"](https://hal.inria.fr/hal-03266676v2/document),
-by [Jonathan El Methni](https://scholar.google.fr/citations?user=JjjH8N8AAAAJ&hl=fr), [Stéphane Girard](http://mistis.inrialpes.fr/people/girard/)
+by [Jonathan El Methni](https://scholar.google.fr/citations?user=JjjH8N8AAAAJ&hl=fr), [Stéphane Girard](http://mistis.inrialpes.fr/people/girard/).
 
-The repo contains the codes for comparing the 8 extreme quantile estimators on both simulated and real-data.
+The repo contains the codes for comparing our proposed extreme quantile estimator with 7 other known estimators in the literature 
+on both simulated and real-data.
 
 ## Abstract
 Weissman extrapolation methodology for estimating extreme quantiles from heavy-tailed distribution is based on two estimators: an order statistic to estimate an intermediate quantile and an estimator of the tail-index. 
@@ -13,10 +14,29 @@ Our approach is compared to other bias reduced estimators of extreme quantiles b
 
 
 ## Dependencies
-Install the requirements for each software version used
-- Python >3.8
+Clone the repo
+
+```
+git clone https://github.com/michael-allouche/refined-weissman.git
+cd refined-weissman
+```
+
+
+Install the requirements for each software version used in this repo
+- Python 3.10.1
+
+_via pip_
 
 `pip install -r requirements.txt`
+
+_or via conda_
+
+```
+conda create --name rweissman python=3.10
+conda activate rweissman
+conda install --file requirements.txt
+```
+
 - R 4.1.2
 
 `install.packages("evt0")`
@@ -65,10 +85,10 @@ statsviz.evt_quantile_plot(n_replications=1000,
 ### Real data
 We consider here the Secura Belgian reinsurance data set in `./dataset/besecura.txt` on automobile claims from 1998 until 2001.
 This data set consists of <img src="https://render.githubusercontent.com/render/math?math=n = 371"> claims which were at least as large as 1.2 million Euros and were corrected for inflation. 
-Our goal is to estimate the extreme quantile <img src="https://render.githubusercontent.com/render/math?math=q(1/n)"> 
-with <img src="https://render.githubusercontent.com/render/math?math=1/n\simeq 0.0027">) and to compare it to the maximum 
+Our goal is to estimate the extreme quantile <img src="https://render.githubusercontent.com/render/math?math=q(1/n)">
+(with <img src="https://render.githubusercontent.com/render/math?math=1/n\simeq 0.0027">) and to compare it to the maximum 
 of the sample <img src="https://render.githubusercontent.com/render/math?math=x_{n,n}=7.898">million Euros.
-
+![histogram](imgs/hist_real.jpg)
 
 
 

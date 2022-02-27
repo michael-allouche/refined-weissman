@@ -364,14 +364,9 @@ def real_loglog_plot(saved=False):
 
 
 def real_hist_plot(saved=False):
-    # sns.set_style("whitegrid", {'grid.linestyle': '--'})
-    # fig, axes = plt.subplots(1, 1, figsize=(15, 7), sharex=False, squeeze=False)  # 3 plots: quantile, var, mse
-    # plt.figure(figsize=(20, 12))
-
     X = pd.read_csv(Path(os.getcwd(), 'dataset', "besecura.txt"), sep='\t').loc[:, 'Loss'].to_numpy()  # read data
 
     h = sns.displot(data=X, aspect=2, height=10)
-    # sns.histplot(data=X)
     h.set(ylabel=None)  # remove the axis label
     plt.xticks(fontsize=20)
     plt.yticks(fontsize=20)
@@ -379,10 +374,13 @@ def real_hist_plot(saved=False):
     h.set(xticks=[1e6, 2e6, 3e6, 4e6, 5e6, 6e6, 7e6, 8e6])
     h.set_xticklabels(np.arange(1, 9, 1))
 
+    plt.title('Histogram of the losses', fontsize=20)
+
     sns.despine()
     if saved:
         pathdir = Path("imgs")
         pathdir.mkdir(parents=True, exist_ok=True)
-        plt.savefig(pathdir / "hist_real.eps", format="eps")
-    return
+        # plt.savefig(pathdir / "hist_real.eps", format="eps")
+        plt.savefig(pathdir / "hist_real.jpg")
+        return
 
