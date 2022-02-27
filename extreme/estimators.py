@@ -25,7 +25,7 @@ class TailIndexEstimator():
 
         Parameters
         ----------
-        X_order : ndarray or list
+        X_order : ndarray
             Order statistics X_{1,n} \leq ... \leq X_{n,n}
 
         References
@@ -361,7 +361,7 @@ class ExtremeQuantileEstimator(TailIndexEstimator):
         ----------
         x : ndarray
         j: int
-            decimal point
+            decimal point + 1
 
         Returns
         -------
@@ -369,14 +369,13 @@ class ExtremeQuantileEstimator(TailIndexEstimator):
         """
         x = x[~np.isnan(x)]  # remove nans
         x = x[~np.isinf(x)]  # remove inf
-        # x = (np.abs(x) * 10**j).astype(int)  # convert to integers and absolute value to remove -
         mat = np.zeros(shape=(len(x), j + 1))
         for idx in range(len(x)):
             for val in range(j):
                 # split the integer into array. Add "1"*(j+1) to avoid problem with numbers starting by 0
                 mat[idx, val] = int(str(int(float('% .{}f'.format(j)%np.abs(x[idx]))*10**j) + int("1"*(j+1)))[val])
 
-        diff_mat = np.diff(mat, axis=1)  # diff in between columns
+        diff_mat = np.diff(mat, axis=1)  # diff between columns
         list_k = np.count_nonzero(diff_mat == 0., axis=1)  # count number of zeros in columns
         return np.min(list_k), np.max(list_k)
 
