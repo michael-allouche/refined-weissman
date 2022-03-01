@@ -10,9 +10,9 @@
 .idea/
 __pychache__
 .ipynb_checkpoints/
+.Rhistory
 
 # Directories #
-ckpt/
 data/
 backup/
 VM/
