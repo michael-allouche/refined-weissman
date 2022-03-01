@@ -126,38 +126,16 @@ class NHW(FrechetMDA2OC):
         return np.power(t, self.evi) * np.exp(A / self.rho)
 
 
-class GeneralizedHeavyTailed():
-    def __init__(self, q0, evi, scale, rho):
-        self.q0 = q0
-        self.evi = evi
-        self.scale = np.array(scale).reshape(1, -1)
-        self.rho = np.array(rho).reshape(1, -1)
-        return
-
-    def ppf(self, u):
-        """quantile function"""
-        return self.q0 * np.power(1-u, -self.evi) * np.exp(np.sum(self.scale * (np.power(1-u, -self.rho) - 1), axis=1)).reshape(-1,1)
-
-    def isf(self, u):
-        """inverse survival function"""
-        return self.ppf(1 - u)
-
-    def tail_ppf(self, x):
-        """tail quantile function U(x)=q(1-1/x)"""
-        return self.isf(1/x)
-
 
 if __name__ == '__main__':
     import matplotlib.pyplot as plt
-    q0 = 1.
     evi = 0.5
-    rho = [-1, -2]  # \bar rho_j order parameter
-    scale = [-1, -2]
+    rho = [-1]  # \bar rho_j order parameter
     n_data = 100
     u = np.linspace(0, 1-1/n_data, n_data).reshape(-1, 1)
 
-    ht = GeneralizedHeavyTailed(q0, evi, scale, rho)
-    quantiles = ht.isf(u)
+    ht = Burr(evi, rho)
+    quantiles = ht.ppf(u)
     plt.plot(u, quantiles)
     plt.show()
 

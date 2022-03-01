@@ -1,9 +1,8 @@
-from .distributions import Burr, GeneralizedHeavyTailed, Frechet, InverseGamma, Fisher, GPD, Student, NHW
+from .distributions import Burr, Frechet, InverseGamma, Fisher, GPD, Student, NHW
 import numpy as np
-from pathlib import Path
 
 dict_distributions = {"burr": Burr, "invgamma": InverseGamma, "frechet": Frechet, "fisher": Fisher, "gpd": GPD,
-                      "student": Student, "nhw": NHW, "generalized": GeneralizedHeavyTailed}
+                      "student": Student, "nhw": NHW}
 
 
 def load_distribution(name_distribution):
@@ -17,10 +16,6 @@ class DataSampler():
         self.ht_dist = load_distribution(distribution)(**params)  # heavy-tailed distribution
         self.percentile = percentile
 
-        # self.pathdir_data = Path("data", self.distribution)
-        # if not self.pathdir_data.is_dir():
-        #     self.pathdir_data.mkdir()
-
         return
 
     def simulate_quantiles(self, n_data, low_bound=0., high_bound=1., random=True, seed=32, **kwargs):
@@ -29,12 +24,11 @@ class DataSampler():
         quantiles(random=False) or order statistics (random=True) from heavy-tailed distribution
         Parameters
         ----------
-        n_data :
-        low_bound :
-        up_bound :
+        n_data : int
+        low_bound : float
+        high_bound : float
         random : bool
-            if true: drawn u values from a uniform distribution, else from a linear grid
-        kwargs :
+            if true, drawn u values from a uniform distribution, else from a linear grid
 
         Returns
         -------

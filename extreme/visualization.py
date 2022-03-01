@@ -375,8 +375,6 @@ def real_hist_plot(saved=False):
     h.set(xticks=[1e6, 2e6, 3e6, 4e6, 5e6, 6e6, 7e6, 8e6])
     h.set_xticklabels(np.arange(1, 9, 1))
 
-
-
     sns.despine()
     if saved:
         pathdir = Path("imgs")
