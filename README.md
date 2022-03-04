@@ -10,6 +10,9 @@ Weissman extrapolation methodology for estimating extreme quantiles from heavy-t
 The common practice is to select the same intermediate sequence for both estimators.
 In this work, we show how an adapted choice of two different  intermediate sequences leads to a reduction of the asymptotic bias associated with the resulting refined Weissman estimator. 
 The asymptotic normality of the latter estimator is established and a data-driven method is introduced for the practical selection of the intermediate sequences.
+This new bias reduction method is fully automatic and does not involve the selection of extra parameters.
+Our approach is compared to Weissman estimator and to six bias reduced estimators of extreme quantiles on a large scale simulation study. It appears that the refined Weissman estimator outperforms these competitors in a wide variety of situations, especially in the challenging high bias cases.
+Finally, an illustration on an actuarial real data set is provided.
 Our approach is compared to other bias reduced estimators of extreme quantiles both on simulated and real data.
 
 
