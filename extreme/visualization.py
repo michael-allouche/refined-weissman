@@ -170,7 +170,6 @@ def evt_hill_plot(n_replications, n_data, distribution, params, n_quantile, save
     bestK = random_forest_k(np.array(hill_gammas), n_forests=10000, seed=42)
 
     k_prime = evt_estimators.get_kprime_rw(n_data-1)[0]
-    print(k_prime)
     anchor_points_prime = np.arange(2, int(k_prime)+1)
     hill_gammas_prime = [evt_estimators.hill(k_anchor) for k_anchor in anchor_points_prime]
 
