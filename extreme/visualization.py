@@ -253,8 +253,9 @@ def real_quantile_plot_paper(saved=False):
     X = pd.read_csv(Path(os.getcwd(), 'dataset', "besecura.txt"), sep='\t').loc[:, 'Loss'].to_numpy()  # read data
     X_order = np.sort(X)
     n_data = len(X_order)
+    EXTREME_ALPHA = 1/n_data
     anchor_points = np.arange(2, n_data)  # 2, ..., n-1
-    real_quantile = X_order[-1]  # real extreme quantile at order 1/n
+    real_quantile = X_order[-int(EXTREME_ALPHA*n_data)]  # real extreme quantile at order 1/n
 
     dict_evt = real_estimators(return_full=True)
 

@@ -427,6 +427,7 @@ def random_forest_k(x, n_forests, seed=42):
     Returns
     -------
     k : int
+        selected anchor point (python indexing)
     """
     np.random.seed(seed)
     A0 = 13
