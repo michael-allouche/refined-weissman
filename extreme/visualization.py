@@ -131,7 +131,6 @@ def evt_quantile_plot_paper(n_replications, n_data, distribution, params, n_quan
     elif plot_type == "rmse":
         axes[0, 0].set_ylim(0, .2)  # MSE
 
-
     fig.tight_layout()
     sns.despine()
 
@@ -296,18 +295,19 @@ def real_hill_plot(saved=False):
     X = pd.read_csv(Path(os.getcwd(), 'dataset', "besecura.txt"), sep='\t').loc[:, 'Loss'].to_numpy()  # read data
     X_order = np.sort(X)
     n_data = len(X_order)
-    anchor_points = np.arange(2, n_data)  # 2, ..., n-1
-    anchor_points_prime = np.arange(2, 107)
     EXTREME_ALPHA = 1 / n_data
     evt_estimators = ExtremeQuantileEstimator(X=X_order, alpha=EXTREME_ALPHA)
-
-    K_STAR = 68  # k^star chosen
+    anchor_points = np.arange(2, n_data)  # 2, ..., n-1
 
     hill_gammas = [evt_estimators.hill(k_anchor) for k_anchor in anchor_points]
+
+    k_prime = evt_estimators.get_kprime_rw(n_data-1)[0]
+    anchor_points_prime = np.arange(2, int(k_prime)+1)
     hill_gammas_prime = [evt_estimators.hill(k_anchor) for k_anchor in anchor_points_prime]
+    bestK = random_forest_k(np.array(hill_gammas_prime), n_forests=10000, seed=42)
 
     axes[0, 0].plot(anchor_points, hill_gammas, color="black")
-    axes[0, 0].scatter(K_STAR , hill_gammas[K_STAR -1], s=200, color="red", marker="^")
+    axes[0, 0].scatter(bestK, hill_gammas[bestK -1], s=200, color="red", marker="^")
     axes[0, 0].plot(anchor_points_prime, hill_gammas_prime, color="red")
 
 
@@ -316,8 +316,6 @@ def real_hill_plot(saved=False):
 
     plt.xticks(fontsize=20)
     plt.yticks(fontsize=20)
-
-
 
     fig.tight_layout()
     sns.despine()
