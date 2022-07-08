@@ -22,6 +22,9 @@ parser.add_argument('--replications', '-r', type=int,
 parser.add_argument('--ndata', '-n', type=int,
                     help="Number of observations ",
                     default=500)
+parser.add_argument('--level', '-l', type=str,
+                    help="level quantile: {'n', '2n'} ",
+                    default="2n")
 
 
 
@@ -30,13 +33,14 @@ if __name__ == "__main__":
     distribution = args.distribution
     n_replications = args.replications
     n_data = args.ndata
+    level_quantile = args.level
 
     keys, values = zip(*dict_runner[distribution].items())
     permutations_dicts = [dict(zip(keys, v)) for v in product(*values)]
     for parameters in permutations_dicts:
         print("{}: ".format(distribution),parameters)
         df_evt = evt_estimators(n_replications=n_replications, params=parameters,
-                                distribution=distribution, n_data=n_data)
+                                distribution=distribution, n_data=n_data, n_quantile=level_quantile)
 
 
 
