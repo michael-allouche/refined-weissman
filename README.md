@@ -1,5 +1,5 @@
 # A refined Weissman estimator of extreme quantile, 2022
-Implementation of the paper ["A refined Weissman estimator of extreme quantile"](https://hal.inria.fr/hal-03266676v3/document),
+Implementation of the paper ["A refined Weissman estimator of extreme quantile"](https://inria.hal.science/hal-03266676/file/Weissman_estimator_revisited.pdf),
 by Michaël Allouche,  [Jonathan El Methni](https://scholar.google.fr/citations?user=JjjH8N8AAAAJ&hl=fr) and [Stéphane Girard](http://mistis.inrialpes.fr/people/girard/).
 
 The repo contains the codes for comparing our proposed extreme quantile estimator with 7 other known estimators in the literature 
@@ -102,9 +102,13 @@ using our proposed Algorithm in the paper.
 
 
 ## Citing
-@unpublished{girard2021refined,\
-	title = {A refined Weissman estimator for extreme quantiles},\
-	author = {Allouche, M., El Methni, J. and Girard, S.},\
-	url = {\tt https://hal.inria.fr/hal-03266676}, \
-	year = {2021}
+@article{allouche2023refined,
+  title={A refined Weissman estimator for extreme quantiles},
+  author={Allouche, Micha{\"e}l and El Methni, Jonathan and Girard, St{\'e}phane},
+  journal={Extremes},
+  volume={26},
+  number={3},
+  pages={545--572},
+  year={2023},
+  publisher={Springer}
 }
